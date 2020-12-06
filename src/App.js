@@ -33,7 +33,7 @@ const App = () => {
     }
 
     // console.log("_token>>>", _token);
-  }, []);
+  }, [user, token, dispatch]);
 
   console.log("user from DataLayer>>>", user);
   console.log("token from DataLayer>>>", token);
