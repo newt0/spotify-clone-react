@@ -3,7 +3,6 @@ import "./Login.css";
 import { loginUrl } from "./spotify";
 
 const Login = () => {
-  console.log("");
   return (
     <div className="login">
       <img
