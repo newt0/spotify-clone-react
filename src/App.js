@@ -4,7 +4,6 @@ import Player from "./Player";
 import { getTokenFromUrl } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDataLayerValue } from "./DataLayer";
-// import { DataLayer } from "./DataLayer";
 
 const spotify = new SpotifyWebApi();
 
@@ -37,6 +36,13 @@ const App = () => {
           playlists: playlists,
         });
       });
+
+      spotify.getPlaylist("37i9dQZF1DWZiO1ktj2PPG").then((response) => {
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        });
+      });
     }
 
     // console.log("_token>>>", _token);
@@ -45,7 +51,11 @@ const App = () => {
   console.log("user from DataLayer>>>", user);
   console.log("token from DataLayer>>>", token);
 
-  return <div className="app">{token ? <Player /> : <Login />}</div>;
+  return (
+    <div className="app">
+      {token ? <Player spotify={spotify} /> : <Login />}
+    </div>
+  );
 };
 
 export default App;
